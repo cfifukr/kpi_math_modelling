@@ -1,14 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Параметри
+
 A = 1
 omega1 = 1
-omega2 = 1  # Для 1-го рангу
+omega2 = 1
 phi_values = [0, np.pi / 4, np.pi / 2, 3 * np.pi / 4, np.pi]
 
-
-# Функція для побудови фігури Лісажу
 def plot_lissajous(omega1, omega2, phi, title):
     t = np.linspace(0, 2 * np.pi, 1000)
     x = A * np.sin(omega1 * t)
@@ -17,8 +15,10 @@ def plot_lissajous(omega1, omega2, phi, title):
     plt.plot(x, y, label=f'phi = {phi:.2f} rad')
 
 
-# Фігури 1-го рангу
+# 1 ранг
+
 plt.figure(figsize=(10, 8))
+
 for phi in phi_values:
     plot_lissajous(omega1, omega2, phi, 'Lissajous Figure 1st Rank')
 
@@ -32,8 +32,9 @@ plt.axis('equal')
 plt.legend()
 plt.show()
 
-# Фігури 2-го рангу
-omega2 = 2  # Для 2-го рангу
+# 2 ранг
+
+omega2 = 2
 plt.figure(figsize=(10, 8))
 for phi in phi_values:
     plot_lissajous(omega1, omega2, phi, 'Lissajous Figure 2nd Rank')
