@@ -1,24 +1,26 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-coefficients = [3, 0, 1, 2, 0, 0, 2] #3p^6 + +p^4 + +2p^3 +2
+def D(omega):
+    return (3*(1j * omega) ** 6) +\
+        ((1j * omega) ** 4) +\
+        (2 * (1j * omega) ** 3)\
+        + 2
 
-roots = np.roots(coefficients)
 
-print("Корні :")
-print(roots)
+def plot_mikhailov():
+    omegas = np.linspace(0, 1.05, 200)
+    D_values = D(omegas)
 
-p = np.linspace(-3, 3, 400)
-D_values = np.polyval(coefficients, p)
+    plt.figure(figsize=(8, 8))
+    plt.plot(D_values.real, D_values.imag, label="Годограф Михайлова")
+    plt.title("Годограф Михайлова")
+    plt.xlabel('Re(D(iω))')
+    plt.ylabel('Im(D(iω))')
+    plt.axhline(0, color='black', linewidth=0.5)
+    plt.axvline(0, color='black', linewidth=0.5)
+    plt.grid(True)
+    plt.legend()
+    plt.show()
 
-plt.figure(figsize=(10, 6))
-plt.plot(p, D_values, label='D(p)', color='red')
-plt.axhline(0, color='black', linestyle='-', lw=1)
-plt.axvline(0, color='black', linestyle='-', lw=1)
-plt.title('Графік полінома D(p)')
-plt.xlabel('p')
-plt.ylabel('D(p)')
-plt.ylim(-10, 10)
-plt.grid()
-plt.legend()
-plt.show()
+plot_mikhailov();
